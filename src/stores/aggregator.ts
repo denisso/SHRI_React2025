@@ -110,7 +110,7 @@ export const useAggregateStore = create<State>((set, get) => ({
       } else if (coe > 1000) {
         rows = 50000;
       }
-      res = await fetch(`http://localhost:3000/aggregate?rows=` + rows, {
+      res = await fetch(`http://localhost:3000/aggregate?rows=` + rows / 10, {
         method: "POST",
         body: formData,
         headers: {
@@ -135,7 +135,15 @@ export const useAggregateStore = create<State>((set, get) => ({
     let prev: Uint8Array | null = new Uint8Array(0);
     let report: Report = {};
     while (true) {
-      const { value, done } = await reader!.read();
+      let chunk;
+      try {
+        chunk = await reader!.read();
+      } catch {
+        set({ state: "error" });
+        addReport(null);
+        return;
+      }
+      const { value, done } = chunk;
       if (done) break;
       const buff: Uint8Array = prev ? concatUint8Arrays(prev, value) : value;
 
