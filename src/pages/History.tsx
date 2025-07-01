@@ -68,7 +68,7 @@ export default function History() {
         ))}
       </div>
       <div className={styles.buttons}>
-        <NavLink to="/" className={`${styles.btn} ${styles["btn-more"]}`}>
+        <NavLink to="/generator" className={`${styles.btn} ${styles["btn-more"]}`}>
           Сгенерировать больше
         </NavLink>
         <button
