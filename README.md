@@ -8,9 +8,9 @@
    ```bash
    git clone https://github.com/denisso/SHRI_React2025.git
    cd SHRI_React2025
-````
+   ```
 
-2. Установите зависимости:
+2. Установите зависимостей:
 
    ```bash
    npm install
